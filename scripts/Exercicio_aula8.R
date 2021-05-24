@@ -34,9 +34,18 @@ glimpse(states)
 
 poliscidata::states
 
-base_states <- states %>% pivot_wider(names_from = abort_rank3, values_from = abortion_rank12 )
+base_states <- states %>% pivot_wider(names_from = stateid, values_from = abortion_rank12 )
 
 #Limpeza
+
+glimpse (base_states) # olhada nos dados
+status (base_states) # estrutura dos dados (missing etc)
+plot_num(base_states) # exploração das variáveis numéricas
+profiling_num(base_states) # estatísticas das variáveis numéricas
+
+base_states$demstate06
+
+base_states_filtro <- drop_na(base_states, demstate06)
 
 #Enriquecimento 
 
