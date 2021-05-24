@@ -34,7 +34,7 @@ glimpse(states)
 
 poliscidata::states
 
-base_states <- states %>% pivot_wider(names_from = )
+base_states <- states %>% pivot_wider(names_from = abort_rank3, values_from = abortion_rank12 )
 
 #Limpeza
 
