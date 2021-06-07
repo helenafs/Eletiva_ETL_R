@@ -82,5 +82,33 @@ QualidadearDT[ , .(Temp = mean(Temp, na.rm = T)), by = Month]
 QualidadearDT[ , lm(formula = Temp ~ Wind + Solar.R)]
 
 
+# Dplyr
 
+# sumário
+count(QualidadearDT, Month) 
 
+# sumário com agrupamento
+
+QualidadearDT %>% group_by(Month) %>% summarise(avg = mean(Temp)) 
+
+# seleção de casos
+
+QualidadearDT %>%  filter(Month != "5") %>% summarise(avg = mean(Temp))
+
+# ordenar casos
+
+arrange(QualidadearDT, Month) # ascendente
+arrange(QualidadearDT, desc(Month)) # descendente
+
+### Transformação de Variáveis
+
+# seleção de colunas
+
+QualidadearDT %>% select(Month, Solar.R, Temp) %>% arrange(Month)
+
+# nova colunas
+
+QualidadearDT %>% mutate(Mes = Month)
+
+# renomear
+QualidadearDT  %>% rename(TemperaturaF = Temp)
