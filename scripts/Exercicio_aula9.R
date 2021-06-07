@@ -37,4 +37,11 @@ str(factorsBanco)
 
 bancoDummy <- acm.disjonctif (factorsBanco)     
 
+# forcats - usando tidyverse para fatores
+# variável econ_ecnow indica a economia atualmente - com 5 níveis: muito bom, bom, nem bom nem ruim, ruim e muito ruim 
 
+fct_count(factorsBanco$econ_ecnow) # conta os fatores
+
+fct_anon(factorsBanco$econ_ecnow) # anonimiza os fatores
+
+fct_lump(factorsBanco$econ_ecnow, n = 1) # reclassifica os fatores em mais comum e outros
