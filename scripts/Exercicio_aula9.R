@@ -18,7 +18,7 @@ library(poliscidata)
 library(tidyverse)
 
 
-?nes #remete a explicação do banco nes (help) 
+?nes #remete à explicação do banco nes (help) 
 
 str(nes) #estrutura do banco nes 
 
@@ -45,3 +45,42 @@ fct_count(factorsBanco$econ_ecnow) # conta os fatores
 fct_anon(factorsBanco$econ_ecnow) # anonimiza os fatores
 
 fct_lump(factorsBanco$econ_ecnow, n = 1) # reclassifica os fatores em mais comum e outros
+
+
+# Data Table
+
+library(dplyr)
+library(data.table)
+
+?airquality #remete à explicação do banco airquality
+
+QualidadearDT <- airquality %>% setDT()
+class(QualidadearDT)
+
+QualidadearDT[Month == '6', ] #i, j, by
+
+QualidadearDT[Month != '6', ]
+
+QualidadearDT[Day > 10 & Month == '5', ]
+#ou
+QualidadearDT[Month == '5', ][Day > 10, ]
+
+QualidadearDT[.N]
+
+QualidadearDT[(.N-3)]
+
+QualidadearDT[ , Month]
+
+cols <- c("Month", "Wind")
+QualidadearDT[ , ..cols]
+
+QualidadearDT[ , .(Temp = mean(Temp, na.rm = T))]
+
+QualidadearDT[ , .(Temp = mean(Temp, na.rm = T)), by = Month]
+
+# Regressão
+QualidadearDT[ , lm(formula = Temp ~ Wind + Solar.R)]
+
+
+
+
