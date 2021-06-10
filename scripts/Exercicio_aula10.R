@@ -35,14 +35,34 @@ cor(y) # observa a correlação entre variáveis
 
 cor(bancoGss, y, use="pairwise.complete.obs") # Error in cor(bancoGss, y, use = "pairwise.complete.obs") : 'x' deve ser numérico
 
-
-##############
-
 data(gss, package = "poliscidata") # importa a base gss - criei só pra conseguir aplicar o segundo exemplo de teste com a shadow matrix 
 
 gss[1:221] <- lapply(gss[1:221], as.numeric) #precisei forçar que as variáveis para se comportarem como numéricas, pois estava dando o erro do comentário que coloquei acima   
 
 
+# Outliers 
 
+# library(data.table) 
+
+install.packages("plotly")
+library(plotly)
+library(dplyr)
+
+# Banco states do pacote poliscidata, com dados dos 50 estados dos EUA 
+
+?states 
+
+data("states", package = "poliscidata") # baixa o banco states 
+
+
+# distância interquartil
+
+plot_ly(y = states$abort_rate05, type = "box", text = states$state, boxpoints = "all", jitter = 0.3)
+boxplot.stats(states$abort_rate05)$out
+
+# filtro de Hamper
+(lower_bound <- median(states$abort_rate05) - 3 * mad(states$abort_rate05, constant = 1))
+(upper_bound <- median(states$abort_rate05) + 3 * mad(states$abort_rate05, constant = 1))
+(outlier_ind <- which(states$abort_rate05 < lower_bound | states$abort_rate05 > upper_bound))
 
 
