@@ -66,3 +66,34 @@ boxplot.stats(states$abort_rate05)$out
 (outlier_ind <- which(states$abort_rate05 < lower_bound | states$abort_rate05 > upper_bound))
 
 
+# Imputação
+
+status (states)
+
+## imputação numérica
+
+
+# tendência central
+install.packages("Hmisc")
+library(Hmisc) # biblio que facilita imputação de tendência central
+states$permit <- impute(states$permit, fun = mean) # média
+states$permit <- impute(states$permit, fun = median) # mediana
+
+is.imputed(states$permit) # teste se o valor foi imputado
+table(is.imputed(states$permit)) # tabela de imputação por sim / não
+
+
+## Hot deck
+
+# imputação aleatória
+
+
+(irisDT$Sepal.Length <- impute(irisDT$Sepal.Length, "random")) # fazemos a imputação aleatória
+
+# imputação por instâncias
+irisDT$Sepal.Length[irisNASeed] <- NA # recolocamos os NA
+
+library(VIM)
+irisDT2 <- kNN(irisDT)
+
+
