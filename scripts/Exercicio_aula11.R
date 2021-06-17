@@ -27,5 +27,17 @@ library(fuzzyjoin)
 
 # Advanced
 states_novo <- fuzzyjoin::stringdist_join(state.x77, states, mode='left')
+
+# Joining by: "state"
+# Erro: Names must be unique.
+# x These names are duplicated:
+#   * "state.abb" at locations 9 and 12.
+# * "state.area" at locations 10 and 13.
+# Run `rlang::last_error()` to see where the error occurred.
+
+
 baseC <- fuzzyjoin::distance_join(state.x77, states, mode='left')
+
+# Joining by: "state"
+# Error in v1 - v2 : argumento não-numérico para operador binário
 
