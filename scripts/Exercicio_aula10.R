@@ -88,12 +88,6 @@ table(is.imputed(states$permit)) # tabela de imputação por sim / não
 # imputação aleatória
 
 
-(irisDT$Sepal.Length <- impute(irisDT$Sepal.Length, "random")) # fazemos a imputação aleatória
-
-# imputação por instâncias
-irisDT$Sepal.Length[irisNASeed] <- NA # recolocamos os NA
-
-library(VIM)
-irisDT2 <- kNN(irisDT)
+(states$nader00<- impute(states$nader00, "random")) # fazemos a imputação aleatória
 
 
