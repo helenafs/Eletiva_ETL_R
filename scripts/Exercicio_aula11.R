@@ -61,6 +61,10 @@ documentoAula2$classe <-  ifelse(
 
 ( datas <- str_extract_all(documentoAula2$all_text, "\\d{2}/\\d{2}/\\d{4}") )
 
+# modificar a data "/" por "-"
 
+(datas_modificadas <- str_replace_all(string = documentoAula2, "/", "-"))
+
+( datas <- str_extract_all(datas_modificadas, "\\d{2}-\\d{2}-\\d{4}") )
 
 
